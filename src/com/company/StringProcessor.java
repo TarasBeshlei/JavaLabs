@@ -4,15 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class StringProcessor {
 
 
-    public String letter;
+
 
     public String readInputText() {
         try {
@@ -25,7 +22,7 @@ public class StringProcessor {
         }
     }
 
-    public String readInputLetter() {
+    public char readInputLetter() {
         try {
             BufferedReader  sr = new BufferedReader(new InputStreamReader(System.in));
             System.out.print("Enter Letter \n");
@@ -35,10 +32,10 @@ public class StringProcessor {
                 throw  new IOException();
             }
 
-            return letter;
+            return letter.charAt(0);
         } catch (IOException error) {
             System.out.println(error.getMessage());
-            return null;
+            return 0;
         }
     }
 
@@ -49,24 +46,6 @@ public class StringProcessor {
         }
     }
 
-//    public String processText(String inputText, String inputLetter){
-//        String resultString = "";
-//        Pattern regexpForWords = Pattern.compile("\\w+[\\.!?,\\s]");
-//        Matcher WordPatternMatcher = regexpForWords.matcher(inputText);
-//
-//        Pattern regexpForLetter = Pattern.compile("\\w");
-//        Matcher LetterPatternMatcher = regexpForLetter.matcher(inputLetter);
-//
-//
-//
-//
-//
-//
-//
-//
-//        String result = "Blia";
-//        return result;
-//    }
 
 
 

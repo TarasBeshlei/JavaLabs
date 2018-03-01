@@ -15,11 +15,11 @@ public class SortTextByLetter {
         return hashMap;
     }
 
-    private Integer countLetters(String word, String letter) {
+    private Integer countLetters(String word, char letter) {
         Integer counter = 0;
-
-        for(int i = 0; i < word.length(); i++) {
-            if(word.substring(i, i+1).equals(letter)) {
+        char[] lettersFromWord = word.toCharArray();
+        for(char letterFromWord : lettersFromWord) {
+            if(letterFromWord == letter) {
                 counter ++;
             }
         }
@@ -27,35 +27,35 @@ public class SortTextByLetter {
         return counter;
     }
 
-    private Map<String, Integer> fillMap(String text, String letter) {
+    private Map<String, Integer> fillMap(String text, char letter) {
 
         Map<String, Integer> hashMap = parseText(text);
 
-        for(Map.Entry<String, Integer> m : hashMap.entrySet()) {
-            m.setValue(countLetters(m.getKey(), letter));
+        for(Map.Entry<String, Integer> wordNumberInBox : hashMap.entrySet()) {
+            wordNumberInBox.setValue(countLetters(wordNumberInBox.getKey(), letter));
         }
         return hashMap;
     }
 
-    public Object[] sort(String text, String letter) {
+    public Object[] sort(String text, char letter) {
         Map<String, Integer> map = fillMap(text, letter);
-        Object[] a = map.entrySet().toArray();
+        Object[] wordLetterCountPairArray = map.entrySet().toArray();
 
-        Arrays.sort(a, new Comparator() {
+        Arrays.sort(wordLetterCountPairArray, new Comparator() {
             public int compare(Object o1, Object o2) {
                 return ((Map.Entry<String, Integer>) o1).getKey()
                         .compareTo(((Map.Entry<String, Integer>) o2).getKey());
             }
         });
 
-        Arrays.sort(a, new Comparator() {
+        Arrays.sort(wordLetterCountPairArray, new Comparator() {
             public int compare(Object o1, Object o2) {
                 return ((Map.Entry<String, Integer>) o2).getValue()
                         .compareTo(((Map.Entry<String, Integer>) o1).getValue());
             }
         });
 
-        return a;
+        return wordLetterCountPairArray;
     }
 
 }

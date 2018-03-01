@@ -4,7 +4,7 @@ public class Main {
 
     public static void main(String args[]) {
         String text;
-        String letter;
+        char letter;
 
         StringProcessor sp = new StringProcessor();
         SortTextByLetter sort = new SortTextByLetter();
